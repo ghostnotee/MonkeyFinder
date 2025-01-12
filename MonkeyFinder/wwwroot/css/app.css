@@ -86,3 +86,231 @@ h1:focus {
         padding-left: env(safe-area-inset-left);
     }
 }
+
+.card-list {
+    list-style: none;
+    padding: 0;
+    margin: 5px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.card-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-right: 1px solid #e9ecef;
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.card-content p {
+    color: #6c757d;
+}
+
+.button-yellow {
+    background-color: #ffffff;
+    /* White background */
+    color: #ffc107;
+    /* Yellow text */
+    border: 2px solid #ffc107;
+    /* Yellow border */
+    padding: 5px 5px;
+    /* Padding inside the button */
+    font-size: 16px;
+    /* Font size */
+    font-weight: bold;
+    /* Bold text */
+    text-align: center;
+    /* Center the text */
+    text-decoration: none;
+    /* Remove underline from links */
+    display: inline-block;
+    /* Make it an inline-block element */
+    border-radius: 25px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition for background and text color */
+    margin-bottom: 10px;
+}
+
+.detailsbody {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.detailscard {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: fit-content;
+}
+
+.detailscard-header {
+    background-color: #fff;
+    padding: "0 0 25px 0";
+    /* Top = Right = Bottom = Left = 25px */
+    position: relative;
+}
+
+.detailsback-arrow {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.detailsback-button {
+    background-color: transparent;
+    /* Transparent background */
+    color: #2a2b2c;
+    /* White text color */
+    border: none;
+    /* No border */
+    font-size: 24px;
+    /* Font size */
+    font-weight: bold;
+    /* Bold text */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    display: flex;
+    /* Flexbox for alignment */
+    align-items: center;
+    /* Center items vertically */
+    padding: 0px 0px;
+    /* Padding inside the button */
+    text-decoration: none;
+    /* No underline */
+    transition: color 0.3s;
+    /* Smooth transition for color */
+}
+
+.detailstitle {
+    color: #2a2b2c;
+    font-size: 1.5em;
+}
+
+.detailscard-image {
+    position: relative;
+    margin: 20px 0;
+    background-color: #ffc107;
+    padding: 10px 20px;
+    display: grid;
+    justify-items: center;
+    /* Center items horizontally */
+    align-items: center;
+    /* Center items vertically */
+    text-align: center;
+    /* Center text inside the h2 */
+}
+
+.detailscard-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    align-items: center;
+    /* Center items vertically */
+}
+
+.detailsimage-title {
+    position: absolute;
+    width: 100%;
+    bottom: -45px;
+    left: 0;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #ffc107;
+    padding: 10px;
+}
+
+.detailscard-body {
+    padding: 20px;
+    display: grid;
+}
+
+.detailsbutton-yellow {
+    background-color: #ffffff;
+    /* White background */
+    color: #ffc107;
+    /* Yellow text */
+    border: 2px solid #ffc107;
+    /* Yellow border */
+    padding: 5px 5px;
+    /* Padding inside the button */
+    font-size: 16px;
+    /* Font size */
+    font-weight: bold;
+    /* Bold text */
+    text-align: center;
+    /* Center the text */
+    text-decoration: none;
+    /* Remove underline from links */
+    display: inline-block;
+    /* Make it an inline-block element */
+    border-radius: 25px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition for background and text color */
+    margin: 15px;
+    align-items: center;
+    /* Center items vertically */
+}
+
+.detailsdescription {
+    color: #6c757d;
+    margin: 10px 0;
+}
+
+.detailslocation,
+.detailspopulation,
+.detailsrating {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.optionstitle {
+    color: #2a2b2c;
+    font-size: 1.5em;
+}
+
+.optionstheme {
+    color: #2a2b2c;
+    font-size: 16px;
+}
+
+.navbar-light .navbar-brand  {
+    color: white;
+}

@@ -5,25 +5,23 @@ namespace MonkeyFinder.Services;
 
 public class MonkeyService
 {
-    private readonly HttpClient httpClient;
+    private readonly HttpClient _httpClient;
 
     public MonkeyService()
     {
-        httpClient = new HttpClient();
+        _httpClient = new HttpClient();
     }
     
     private List<Monkey> _monkeyList = [];
     public async Task<List<Monkey>> GetMonkeysAsync()
     {
         if (_monkeyList.Count > 0) return _monkeyList;
-        var response = await httpClient.GetAsync("https://montemagno.com/monkeys.json");
-        if (response.IsSuccessStatusCode)
+        var response = await _httpClient.GetAsync("https://montemagno.com/monkeys.json");
+        if (!response.IsSuccessStatusCode) return _monkeyList;
+        var listOfMonkey = await response.Content.ReadFromJsonAsync(MonkeyContext.Default.ListMonkey);
+        if (listOfMonkey is not null)
         {
-            var monkeysResult = await response.Content.ReadFromJsonAsync(MonkeyContext.Default.ListMonkey);
-            if (monkeysResult is not null)
-            {
-                _monkeyList = monkeysResult;
-            }
+            _monkeyList = listOfMonkey;
         }
         return _monkeyList;
     }
