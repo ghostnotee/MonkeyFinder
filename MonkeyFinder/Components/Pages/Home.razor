@@ -1,0 +1,34 @@
+﻿@page "/"
+@using MonkeyFinder.Model
+@using MonkeyFinder.Services
+@inject MonkeyService MonkeyService
+
+@if (_monkeys is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul class="card-list">
+        @foreach (var monkey in _monkeys)
+        {
+            <li class="card-item">
+                <img class="card-image" src="@monkey.Image" alt="@monkey.Name"/>
+                <div class="card-content">
+                    <h2>@monkey.Name</h2>
+                    <p>@monkey.Location</p>
+                </div>
+            </li>
+        }
+    </ul>
+}
+
+@code{
+    private List<Monkey> _monkeys = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _monkeys = await MonkeyService.GetMonkeysAsync();
+    }
+
+}
