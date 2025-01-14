@@ -3,25 +3,29 @@
 @using MonkeyFinder.Services
 @inject MonkeyService MonkeyService
 
-@if (_monkeys is null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <ul class="card-list">
-        @foreach (var monkey in _monkeys)
-        {
-            <li class="card-item">
-                <img class="card-image" src="@monkey.Image" alt="@monkey.Name"/>
-                <div class="card-content">
-                    <h2>@monkey.Name</h2>
-                    <p>@monkey.Location</p>
-                </div>
-            </li>
-        }
-    </ul>
-}
+<div>
+    <button class="button-yellow">Add New Monkey</button>
+    @if (_monkeys.Count == 0)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <ul class="card-list">
+            @foreach (var monkey in _monkeys)
+            {
+                <li class="card-item">
+                    <img class="card-image" src="@monkey.Image" alt="@monkey.Name"/>
+                    <div class="card-content">
+                        <h2>@monkey.Name</h2>
+                        <p>@monkey.Location</p>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+
+</div>
 
 @code{
     private List<Monkey> _monkeys = [];
