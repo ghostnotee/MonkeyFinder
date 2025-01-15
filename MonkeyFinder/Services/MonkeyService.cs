@@ -19,10 +19,13 @@ public class MonkeyService
         var response = await _httpClient.GetAsync("https://montemagno.com/monkeys.json");
         if (!response.IsSuccessStatusCode) return _monkeyList;
         var listOfMonkey = await response.Content.ReadFromJsonAsync(MonkeyContext.Default.ListMonkey);
-        if (listOfMonkey is not null)
-        {
-            _monkeyList = listOfMonkey;
-        }
+        if (listOfMonkey is not null) _monkeyList = listOfMonkey;
+        return _monkeyList;
+    }
+    
+    public List<Monkey> AddMonkey(Monkey monkey)
+    {
+        _monkeyList.Add(monkey);
         return _monkeyList;
     }
 }
