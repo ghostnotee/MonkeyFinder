@@ -22,4 +22,10 @@ public class MonkeyService
         if (listOfMonkey is not null) _monkeyList = listOfMonkey;
         return _monkeyList;
     }
+    
+    public List<Monkey> AddMonkey(Monkey monkey)
+    {
+        _monkeyList.Add(monkey);
+        return _monkeyList;
+    }
 }
