@@ -9,6 +9,10 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new MainPage()) { Title = "MonkeyFinder" };
+        return new Window(new NavigationPage(new MainPage())
+        {
+            BarBackground = Color.FromArgb("#ffc107"),
+            BarTextColor = Colors.White
+        });
     }
 }

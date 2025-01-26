@@ -7,12 +7,13 @@ public class MonkeyService
 {
     private readonly HttpClient _httpClient;
 
+    private List<Monkey> _monkeyList = [];
+
     public MonkeyService()
     {
         _httpClient = new HttpClient();
     }
-    
-    private List<Monkey> _monkeyList = [];
+
     public async Task<List<Monkey>> GetMonkeysAsync()
     {
         if (_monkeyList.Count > 0) return _monkeyList;
@@ -22,10 +23,18 @@ public class MonkeyService
         if (listOfMonkey is not null) _monkeyList = listOfMonkey;
         return _monkeyList;
     }
-    
+
     public List<Monkey> AddMonkey(Monkey monkey)
     {
         _monkeyList.Add(monkey);
         return _monkeyList;
+    }
+
+    public Monkey FindMonkeyByName(string? name)
+    {
+        var monkey = _monkeyList.FirstOrDefault(m => m.Name == name);
+        if (monkey is null) throw new Exception($"Monkey with name {name} not found");
+
+        return monkey;
     }
 }

@@ -1,0 +1,48 @@
+@page "/details/{name}"
+@using MonkeyFinder.MauiPages
+@using MonkeyFinder.Model
+@inject NavigationManager NavigationManager
+@inject MonkeyService MonkeyService
+
+<div>
+    <div class="detailscard-header">
+        <button class="detailsback-button" @onclick="CloseWindow">&#8592;</button>
+        <h1 class="detailstitle">@Monkey.Name</h1>
+    </div>
+
+    <div class="detailscard-image">
+        <img src="@Monkey.Image">
+        <h2 class="detailsimage-title">@Monkey.Name</h2>
+    </div>
+
+    <div class="detailscard-body">
+        <button class="detailsbutton-yellow">Show on Map</button>
+        <button class="detailsbutton-yellow" @onclick="AddRating">Rate This Monkey!</button>
+        <p class="detailsdescription">@Monkey.Details</p>
+        <p class="detailslocation"><strong>Location:</strong> @Monkey.Location</p>
+        <p class="detailspopulation"><strong>Population:</strong> @Monkey.Population</p>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? Name { get; set; }
+
+    private Monkey Monkey { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        Monkey = MonkeyService.FindMonkeyByName(Name);
+        base.OnInitialized();
+    }
+
+    private void CloseWindow()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    private void AddRating()
+    {
+        ((Application)App).Windows[0].Page!.Navigation.PushAsync(new MonkeyRatingPage());
+    }
+
+}
