@@ -1,9 +1,9 @@
 ﻿@page "/"
 @using MonkeyFinder.Components.Controls
 @using MonkeyFinder.Model
-@using MonkeyFinder.Services
 @inject MonkeyService MonkeyService
 @inject IDialogService DialogService
+@inject NavigationManager NavigationManager
 
 <div>
     <button class="button-yellow" @onclick="AddMonkey">Add New Monkey</button>
@@ -17,7 +17,7 @@
         <ul class="card-list">
             @foreach (var monkey in _monkeys)
             {
-                <li class="card-item">
+                <li @onclick="() => GoToDetails(monkey)" class="card-item">
                     <img class="card-image" src="@monkey.Image" alt="@monkey.Name"/>
                     <div class="card-content">
                         <h2>@monkey.Name</h2>
@@ -60,6 +60,11 @@
             MonkeyService.AddMonkey(DialogData);
             _monkeys = await MonkeyService.GetMonkeysAsync();
         }
+    }
+
+    private void GoToDetails(Monkey monkey)
+    {
+        NavigationManager.NavigateTo($"/details/{monkey.Name}");
     }
 
 }
