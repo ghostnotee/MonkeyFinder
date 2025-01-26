@@ -1,4 +1,5 @@
 @page "/details/{name}"
+@using MonkeyFinder.MauiPages
 @using MonkeyFinder.Model
 @inject NavigationManager NavigationManager
 @inject MonkeyService MonkeyService
@@ -16,7 +17,7 @@
 
     <div class="detailscard-body">
         <button class="detailsbutton-yellow">Show on Map</button>
-        <button class="detailsbutton-yellow">Rate This Monkey!</button>
+        <button class="detailsbutton-yellow" @onclick="AddRating">Rate This Monkey!</button>
         <p class="detailsdescription">@Monkey.Details</p>
         <p class="detailslocation"><strong>Location:</strong> @Monkey.Location</p>
         <p class="detailspopulation"><strong>Population:</strong> @Monkey.Population</p>
@@ -37,6 +38,11 @@
     private void CloseWindow()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    private void AddRating()
+    {
+        ((Application)App).Windows[0].Page!.Navigation.PushAsync(new MonkeyRatingPage());
     }
 
 }
