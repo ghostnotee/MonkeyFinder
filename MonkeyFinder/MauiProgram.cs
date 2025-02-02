@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.FluentUI.AspNetCore.Components;
 using MonkeyFinder.Services;
+using MonkeyFinder.Services.Permission;
 
 namespace MonkeyFinder;
 
@@ -16,7 +17,10 @@ public static class MauiProgram
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddFluentUIComponents();
 
+        builder.Services.AddSingleton<IPermissionService, PermissionService>();
         builder.Services.AddSingleton<MonkeyService>();
+        builder.Services.AddSingleton<IGeolocation>(_ => Geolocation.Default);
+        builder.Services.AddSingleton<IMap>(_ => Map.Default);
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

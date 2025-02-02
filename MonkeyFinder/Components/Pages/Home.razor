@@ -1,12 +1,8 @@
 ﻿@page "/"
-@using MonkeyFinder.Components.Controls
-@using MonkeyFinder.Model
-@inject MonkeyService MonkeyService
-@inject IDialogService DialogService
-@inject NavigationManager NavigationManager
 
 <div>
     <button class="button-yellow" @onclick="AddMonkey">Add New Monkey</button>
+    <button class="button-yellow" @onclick="FindMonkey">Find Closest Monkey</button>
     <p>Name: @DialogData.Name - Population: @DialogData.Population</p>
     @if (_monkeys.Count == 0)
     {
@@ -29,42 +25,3 @@
     }
 
 </div>
-
-@code{
-    private List<Monkey> _monkeys = [];
-    private Monkey DialogData { get; set; } = new();
-
-    protected override async Task OnInitializedAsync()
-    {
-        _monkeys = await MonkeyService.GetMonkeysAsync();
-    }
-
-    private async Task AddMonkey()
-    {
-        // MAUI Debug console
-        // Debug.WriteLine("Add Monkey");
-
-        // Create a new instance of DialogData to allow the user to cancel the update
-        var data = new Monkey();
-        var dialog = await DialogService.ShowDialogAsync<SimpleCustomizedDialog>(data, new DialogParameters
-        {
-            Title = "Add a New Monkey",
-            PreventDismissOnOverlayClick = true,
-            PreventScroll = true
-        });
-
-        var result = await dialog.Result;
-        if (result is { Cancelled: false, Data: not null })
-        {
-            DialogData = (Monkey)result.Data;
-            MonkeyService.AddMonkey(DialogData);
-            _monkeys = await MonkeyService.GetMonkeysAsync();
-        }
-    }
-
-    private void GoToDetails(Monkey monkey)
-    {
-        NavigationManager.NavigateTo($"/details/{monkey.Name}");
-    }
-
-}
