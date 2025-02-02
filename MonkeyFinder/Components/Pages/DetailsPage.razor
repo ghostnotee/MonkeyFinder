@@ -26,7 +26,7 @@
 
 @code {
 
-    private IMap _map;
+    private readonly IMap _map;
 
     public DetailsPage(IMap map)
     {
@@ -57,7 +57,7 @@
     {
         try
         {
-            if(_map is null) throw new Exception("Map not available.");
+            if (_map is null) throw new Exception("Map not available.");
             await _map.OpenAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
             {
                 Name = Monkey.Name,
