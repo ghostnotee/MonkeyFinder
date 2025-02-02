@@ -57,6 +57,12 @@
     {
         try
         {
+            if(_map is null) throw new Exception("Map not available.");
+            await _map.OpenAsync(Monkey.Latitude, Monkey.Longitude, new MapLaunchOptions
+            {
+                Name = Monkey.Name,
+                NavigationMode = NavigationMode.None
+            });
         }
         catch (Exception e)
         {
