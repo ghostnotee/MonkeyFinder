@@ -4,13 +4,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:alohakid="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:Class="MonkeyFinder.MauiPages.MonkeyRatingPage"
-             Title="Rate a monkey">
+             Title="Rate a monkey"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+
     <VerticalStackLayout VerticalOptions="Center" Spacing="15" Padding="10">
         <Label Text="How would you rate this monkey 🙈"
                VerticalOptions="Center"
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center"
-               FontSize="20" />
+               FontSize="20"
+               TextColor="{AppThemeBinding Light=Black, Dark=White}" />
         <alohakid:Rating x:Name="Rating" />
     </VerticalStackLayout>
 </ContentPage>

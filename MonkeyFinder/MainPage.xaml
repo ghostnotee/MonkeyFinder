@@ -3,9 +3,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MonkeyFinder"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MonkeyFinder.MainPage"
              NavigationPage.HasNavigationBar="False">
-
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#D39E00"
+                                   StatusBarStyle="DarkContent"/>
+    </ContentPage.Behaviors>
     <BlazorWebView x:Name="BlazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type local:Components.Routes}" />
