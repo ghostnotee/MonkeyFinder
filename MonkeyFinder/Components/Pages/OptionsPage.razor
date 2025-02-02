@@ -4,15 +4,10 @@
 
 <button class="button-yellow" @onclick="CheckInternet">Check Internet</button>
 
-@code {
+<FluentMenuButton Text="Select theme color" OnMenuChanged="HandleOnMenuChanged">
+    <FluentMenuItem Id="1">Light</FluentMenuItem>
+    <FluentMenuItem Id="2">Dark</FluentMenuItem>
+    <FluentMenuItem Id="0">System</FluentMenuItem> 
+</FluentMenuButton>
 
-    private async Task CheckInternet()
-    {
-        var hasInternet = Connectivity.Current.NetworkAccess == NetworkAccess.Internet;
-        var internetType = Connectivity.Current.ConnectionProfiles.FirstOrDefault();
-
-        await ((Application)App).Windows[0].Page!.DisplayAlert("Connectivity Status", 
-            $"Internet access: {hasInternet} Internet Type: {internetType}", "OK");
-    }
-
-}
+<p class="optionstheme">Selected Theme: @_selectedTheme</p>
