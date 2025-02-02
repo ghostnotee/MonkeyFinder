@@ -16,7 +16,7 @@
     </div>
 
     <div class="detailscard-body">
-        <button class="detailsbutton-yellow">Show on Map</button>
+        <button class="detailsbutton-yellow" @onclick="OpenMap">Show on Map</button>
         <button class="detailsbutton-yellow" @onclick="AddRating">Rate This Monkey!</button>
         <p class="detailsdescription">@Monkey.Details</p>
         <p class="detailslocation"><strong>Location:</strong> @Monkey.Location</p>
@@ -25,6 +25,14 @@
 </div>
 
 @code {
+
+    private IMap _map;
+
+    public DetailsPage(IMap map)
+    {
+        _map = map;
+    }
+
     [Parameter] public string? Name { get; set; }
 
     private Monkey Monkey { get; set; } = new();
@@ -43,6 +51,17 @@
     private void AddRating()
     {
         ((Application)App).Windows[0].Page!.Navigation.PushAsync(new MonkeyRatingPage());
+    }
+
+    private async Task OpenMap()
+    {
+        try
+        {
+        }
+        catch (Exception e)
+        {
+            await ((Application)App).Windows[0].Page!.DisplayAlert("Error", e.Message, "OK");
+        }
     }
 
 }
