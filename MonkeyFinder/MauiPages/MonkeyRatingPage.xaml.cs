@@ -1,17 +1,24 @@
-using System.Diagnostics;
+using MonkeyFinder.Model;
 
 namespace MonkeyFinder.MauiPages;
 
 public partial class MonkeyRatingPage : ContentPage
 {
-    public MonkeyRatingPage()
+    private readonly Monkey _monkeyToRate;
+    private readonly RatingState _ratingState;
+
+    public MonkeyRatingPage(Monkey monkey, RatingState ratingState)
     {
         InitializeComponent();
+
+        _ratingState = ratingState;
+        _monkeyToRate = monkey;
+        Rating.Value = _ratingState.GetRating(_monkeyToRate);
     }
 
-    private void Button_Clicked(object? sender, EventArgs e)
+    protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
     {
-        Debug.WriteLine("Monkey rating: " + Rating.Value);
-        Navigation.PopModalAsync(); 
+        base.OnNavigatedFrom(args);
+        _ratingState.AddOrUpdateRating(_monkeyToRate, Rating.Value);
     }
 }

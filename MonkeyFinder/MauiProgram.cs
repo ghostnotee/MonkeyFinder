@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.FluentUI.AspNetCore.Components;
+using MonkeyFinder.Model;
 using MonkeyFinder.Services;
 using MonkeyFinder.Services.Permission;
 
@@ -23,6 +24,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<MonkeyService>();
         builder.Services.AddSingleton<IGeolocation>(_ => Geolocation.Default);
         builder.Services.AddSingleton<IMap>(_ => Map.Default);
+        builder.Services.AddSingleton<RatingState>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
