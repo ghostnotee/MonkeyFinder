@@ -1,7 +1,8 @@
 ﻿@page "/"
+@using MonkeyFinder.Components.Controls
 
 <div>
-    <button class="button-yellow" @onclick="AddMonkey">Add New Monkey</button>
+    <MyButton Caption="Add New Monkey" Callback="AddMonkey" />
     <button class="button-yellow" @onclick="FindMonkey">Find Closest Monkey</button>
     <p>Name: @DialogData.Name - Population: @DialogData.Population</p>
     @if (_monkeys.Count == 0)
